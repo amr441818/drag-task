@@ -60,7 +60,7 @@ export const ProjectDetails = () => {
           {projectIdd && <AddTaskForm id={projectIdd} />}
         </CustomModal>
       )}
-      <div className="flex flex-col gap-4 m-[40px]">
+      <div className="flex flex-col gap-4 m-4 md:m-[40px]">
         <div className="w-full  me-6 flex justify-end">
           <button
             type="button"
