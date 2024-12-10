@@ -15,7 +15,7 @@ const Card = (props:CardProps) => {
     <React.Fragment key={props.index}>
         
         
-    <div  draggable onDragStart={()=>props.setActiveItem(props.index)} onDragEnd={()=>props.setActiveItem(null)}  className={`${props.bgColor? props.bgColor: "bg-purple-700"}  text-black cursor-grab flex justify-center items-center rounded-[8px] h-[120px]`}>
+    <div  draggable onDragStart={()=>props.setActiveItem(props.index)} onDragEnd={()=>props.setActiveItem(null)}  className={`${props.bgColor? props.bgColor: "bg-purple-700"} w-full text-black cursor-grab flex justify-center items-center rounded-[8px] h-[120px]`}>
       {props?.title}
     </div>
     <DropArea onDrop={props.onDropHandler} status={props.status} position={props.index + 1}/>

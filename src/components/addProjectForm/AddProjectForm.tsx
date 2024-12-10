@@ -4,6 +4,7 @@ import CustomTextAria from "../reusableComponents/CustomTextAria";
 import { projectActions } from "../../store/projectsSlice";
 import { useDispatch } from "react-redux";
 import { modelActions } from "../../store/modelSlice";
+import { showAlert } from "../Error";
 
 type formDataTypes = {
     title:string;
@@ -25,6 +26,7 @@ const [formData, setFormData] = useState <formDataTypes>(initalFormData)
       dispatch(projectActions.addProject({title:formData.title, descreption:formData.description}))
       setFormData(initalFormData)
       dispatch(modelActions.closeModel())
+      showAlert("Added", "Project Added Successfully")
 
     }
   return (

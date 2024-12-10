@@ -10,7 +10,7 @@ const CustomSelect = (props: customSelectProps) => {
       borderWidth: 0.5,
       borderRadius: 4,
     }),
-    control: (provided: any, state: any) => ({
+    control: (provided: any, ) => ({
       ...provided,
       borderColor: "#d1d5db", 
       "&:hover": {
@@ -18,7 +18,7 @@ const CustomSelect = (props: customSelectProps) => {
       },
       boxShadow: "none", 
     }),
-    option: (provided: any, state: any) => ({
+    option: (provided: any, ) => ({
       ...provided,
       backgroundColor:  "white",
       color:  "black",
@@ -32,6 +32,7 @@ const CustomSelect = (props: customSelectProps) => {
     newValue: SingleValue<{ value: string; label: string }>
   ) => {
     const selectedValue = newValue ? newValue.value : 0;
+    //@ts-ignore
     props.onChange(selectedValue);
   };
   return (

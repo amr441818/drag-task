@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./auth-slice";
+
 
 import favReducer from "./modelSlice";
 
@@ -9,7 +9,7 @@ import modelSlice from "./modelSlice";
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+  
     Model: modelSlice,
     projects: projectsSlice,
     fav: favReducer,

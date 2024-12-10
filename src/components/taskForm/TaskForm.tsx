@@ -5,6 +5,7 @@ import { projectActions } from "../../store/projectsSlice";
 import { useDispatch } from "react-redux";
 import { modelActions } from "../../store/modelSlice";
 import CustomSelect from "../reusableComponents/CustomSelect";
+import { showAlert } from "../Error";
 
 type formDataTypes = {
   title: string;
@@ -31,6 +32,7 @@ const AddTaskForm = ({ id }: { id: string }) => {
     setFormData({ ...formData, status: value });
   };
   const submitHandler = () => {
+    
     dispatch(
       projectActions.addTask({
         task: {
@@ -43,6 +45,7 @@ const AddTaskForm = ({ id }: { id: string }) => {
     );
     setFormData(initalFormData);
     dispatch(modelActions.closeModel());
+    showAlert("Added", "Task Added Successfully")
   };
   return (
     <form action="" onSubmit={submitHandler}>

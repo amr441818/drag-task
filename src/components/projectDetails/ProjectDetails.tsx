@@ -9,6 +9,7 @@ import { modelActions } from "../../store/modelSlice";
 import { projectActions } from "../../store/projectsSlice";
 import AddTaskForm from "../taskForm/TaskForm";
 import { FaPlus } from "react-icons/fa6";
+import { projectType, taskType } from "../../types/projectsType";
 
 export const ProjectDetails = () => {
   const { projectId } = useParams();
@@ -21,8 +22,11 @@ export const ProjectDetails = () => {
   const openModalHandler = () => {
     dispatch(modelActions.openModel("task"));
   };
-  const project = projects.find((project) => project.id === projectId);
-  const [itemsArr, setItemArr] = useState(project?.tasks);
+  const project = projects.find(
+    (project: projectType) => project.id === projectId
+  );
+  const [itemsArr, setItemArr] = useState<taskType[]>([]);
+  const [projectIdd, setProjectId] = useState<string | null>(null);
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   const onDropHandler = (status: string, position: number) => {
@@ -36,28 +40,27 @@ export const ProjectDetails = () => {
 
     updatedArr.splice(position, 0, { ...itemToDrop, status: status });
 
-    dispatch(
-      projectActions.editTaskStatus({ id: project.id, tasks: updatedArr })
-    );
-
-    // setItemArr(updatedArr.sort((a, b) => a.order - b.order));
+    if (project) {
+      dispatch(
+        projectActions.editTaskStatus({ id: project.id, tasks: updatedArr })
+      );
+    }
   };
   useEffect(() => {
-    setItemArr(project?.tasks);
+    if (project) {
+      setItemArr(project?.tasks);
+      setProjectId(project.id);
+    }
   }, [project]);
-  console.log(project);
+
   return (
     <>
       {openModel && modalType === "task" && (
         <CustomModal title="Add project">
-          {" "}
-          <AddTaskForm id={project?.id} />
+          {projectIdd && <AddTaskForm id={projectIdd} />}
         </CustomModal>
       )}
       <div className="flex flex-col gap-4 m-[40px]">
-
-       
-
         <div className="w-full  me-6 flex justify-end">
           <button
             type="button"
@@ -69,15 +72,14 @@ export const ProjectDetails = () => {
           </button>
         </div>
 
+        <div className="flex justify-center flex-col lg:flex-row   w-full min-h-[450px]  bg-[#f9f9f9] rounded-[12px] p-4 ">
+          <div className="flex   flex-col items-center w-full border-e-[1px] border-[#f6edc9] p-5 gap-4">
+            <p className=" rounded-[12px] text-center py-2 min-w-[200px]  px-9 font-bold bg-[#f6edc9] text-black taxt-[22px] ">
+              To Do
+            </p>
 
-        <div className="flex justify-center   w-full min-h-[450px]  bg-[#f9f9f9] rounded-[12px] p-4 ">
-
-          <div className="flex   flex-col w-full border-e-[1px] border-[#f6edc9] p-5 gap-4">
-
-            <p className=" rounded-[12px] text-center py-2   px-9 font-bold bg-[#f6edc9] text-black taxt-[22px] ">To Do</p>
-            
             <DropArea onDrop={onDropHandler} status="toDo" position={0} />
-            
+
             {itemsArr?.map((item, index) => {
               if (item.status === "toDo") {
                 return (
@@ -93,9 +95,11 @@ export const ProjectDetails = () => {
               }
             })}
           </div>
-          
-          <div className="flex flex-col justify-center w-full border-e-[1px] border-[#f5e0c9] p-5 gap-4">
-            <div className="flex justify-center ">In progress</div>
+
+          <div className="flex flex-col  items-center w-full border-e-[1px] border-[#f5e0c9] p-5 gap-4">
+            <p className=" rounded-[12px] text-center py-2  min-w-[200px] px-9 font-bold bg-[#f5e0c9] text-w taxt-[22px] ">
+              In Progress
+            </p>
             <DropArea onDrop={onDropHandler} status="progress" position={0} />
             {itemsArr?.map((item, index) => {
               if (item.status === "progress") {
@@ -112,8 +116,10 @@ export const ProjectDetails = () => {
               }
             })}
           </div>
-          <div className="flex flex-col justify-center w-full border-[#eeeeee] p-5 gap-4">
-            <div className="flex justify-center">Completed</div>
+          <div className="flex flex-col items-center w-full border-[#eeeeee] p-5 gap-4">
+            <p className=" rounded-[12px] text-center py-2  min-w-[200px] px-9 font-bold bg-[#eeeeee] text-w taxt-[22px] ">
+              Completed
+            </p>
             <DropArea onDrop={onDropHandler} status="completed" position={0} />
             {itemsArr?.map((item, index) => {
               if (item.status === "completed") {
@@ -130,12 +136,11 @@ export const ProjectDetails = () => {
               }
             })}
           </div>
-          
         </div>
-        <div className="flex flex-col gap-3     p-10 ">
-          <h1>{project?.title}</h1>
-          <p>{project?.descreption}</p>
-        </div>
+      </div>
+      <div className="flex flex-col gap-3     p-10 ">
+        <h6 className="text-[22px] font-bold">{project?.title}</h6>
+        <p className="text-[16px] text-[#666464]  ">{project?.descreption}</p>
       </div>
     </>
   );

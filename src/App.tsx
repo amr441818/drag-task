@@ -1,16 +1,17 @@
 import { Outlet } from "react-router-dom";
 import { AppSidebar } from "./components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
-import { ReactNode, useEffect } from "react";
+import {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { projectActions } from "./store/projectsSlice";
 import { RootState } from "./store";
 import CustomModal from "./components/reusableComponents/CustomModal";
-import AddProjectForm from "./components/addProjectForm/addProjectForm";
+import AddProjectForm from "./components/addProjectForm/AddProjectForm";
 
 
 
-function App({ children }: {children : ReactNode}) {
+
+function App() {
 
   const dispatch = useDispatch()
   const {openModel, modalType} = useSelector((state: RootState)=> state.Model)
@@ -31,7 +32,7 @@ if(projects){
             <AppSidebar />
             <main>
               <SidebarTrigger />
-              {children}
+              
             </main>
           </SidebarProvider>
         

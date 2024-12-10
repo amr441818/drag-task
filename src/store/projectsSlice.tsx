@@ -56,10 +56,12 @@ const projectsSlice = createSlice({
 
      const project = updatedProjects.find((item:projectType)=> item.id === action.payload.id)
      const projectIndex = updatedProjects.findIndex((item:projectType)=> item.id === action.payload.id)
-     
+     if(project){
       project.tasks = [...project.tasks, action.payload.task]
      
-     updatedProjects[projectIndex] = project
+      updatedProjects[projectIndex] = project
+     }
+     
      state.projects = updatedProjects
       localStorage.setItem("projects", JSON.stringify([...state.projects]));
     },

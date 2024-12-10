@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+
 
 import {
   Sidebar,
@@ -39,7 +39,7 @@ const openModalHandler = ()=>{
               
               {projects.map((item) => (
                 <SidebarMenuItem key={item.id}  >
-                  <Link className="bg-red-700 p-3 rounded-[4px] flex  items-center cursor-pointer "  to={`/projects/${item.id}`} > 
+                  <Link className="bg-[#f7bfa3] p-3 rounded-[4px] flex  items-center cursor-pointer "  to={`/projects/${item.id}`} > 
                    
                    <span className="text-white text-[16px] " >{item.title}</span>
                 </Link>
