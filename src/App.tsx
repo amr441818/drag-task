@@ -24,7 +24,7 @@ if(projects){
   return (
     <>
             {openModel  && modalType === "project" && (  <CustomModal title="Add project"> <AddProjectForm/></CustomModal>)}
-      <div className="flex  ">
+      <div className="flex ">
           <SidebarProvider
           className="w-auto"
           >

@@ -18,7 +18,7 @@ const dispatch = useDispatch()
             <div style={{zIndex:999}} id="crud-modal" aria-hidden="true" className="fixed top-0 right-0 left-0  flex justify-center items-center  h-[100vh] bg-gray-800 bg-opacity-85">
                 <div className="relative p-4 w-[95%] md:w-[55%]">
                     <div className="relative bg-white rounded-2xl shadow dark:bg-gray-700 ">
-                        <div className="flex items-center bg-gradient-to-r from-[#019867] to-[#019867]  justify-between p-4 md:p-5  rounded-t-xl  dark:border-gray-600">
+                        <div className="flex items-center bg-[#f29943]  justify-between p-4 md:p-5  rounded-t-xl  dark:border-gray-600">
                             <h3 className="text-lg font-semibold text-white dark:text-white">{props.title}</h3>
                             <button
                                 type="button"

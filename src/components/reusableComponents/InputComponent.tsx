@@ -1,6 +1,6 @@
 
 import { customInputProps } from '../../types/projectsType';
-import './index.css';
+import './styles.css';
 const InputComponent = (props: customInputProps) => {
     return (
         <div className="lg:col-span-6 col-span-12">

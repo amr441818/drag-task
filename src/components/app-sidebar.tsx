@@ -9,41 +9,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "../components/ui/sidebar"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
 import { Link, useNavigate } from "react-router-dom"
 import { modelActions } from "../store/modelSlice"
-import { useState } from "react"
-
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
+import { FaPlus } from "react-icons/fa6";
+import logoImg from '../assets/business-to-do-list-flat-icon-modern-style-vector.jpg'
 
 export function AppSidebar() {
  
@@ -56,32 +28,29 @@ const openModalHandler = ()=>{
 }
   return (
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className='cursor-pointer' onClick={()=> navigate('/')}>To Do List</SidebarGroupLabel>
+      <SidebarContent >
+        <SidebarGroup className="flex flex-col gap-4">
+          <SidebarGroupLabel className='cursor-pointer h-[120px] p-6 rounded-[4px] bg-[#f7bfa3] text-white flex gap-3 ' onClick={()=> navigate('/')}> <img src={logoImg} className="w-9 h-9 rounded-full"/> <span className="text-[24px]">To Do List</span></SidebarGroupLabel>
           
           <SidebarGroupContent>
             <SidebarMenu>
-                <div className="flex flex-col gap-5 ">
+                <div className="flex flex-col gap-2 ">
 
               
               {projects.map((item) => (
-                <SidebarMenuItem key={item.id}>
-                  <SidebarMenuButton asChild>
-                   <Link  to={`/projects/${item.id}`}>
+                <SidebarMenuItem key={item.id}  >
+                  <Link className="bg-red-700 p-3 rounded-[4px] flex  items-center cursor-pointer "  to={`/projects/${item.id}`} > 
                    
-                      <span>{item.title}</span>
-                   </Link>
-                    
-                  </SidebarMenuButton>
+                   <span className="text-white text-[16px] " >{item.title}</span>
+                </Link>
                 </SidebarMenuItem>
               ))}
  
             
                 </div>
                 <SidebarMenuItem >
-                  <SidebarMenuButton  className="bg-[#019867] rounded-[4px] text-white" onClick={openModalHandler}   >
-                 Add new project
+                  <SidebarMenuButton  className="bg-[#f29943] rounded-[4px] flex gap-4 justify-center hover:bg-[#e9a45f] hover:text-white text-white p-6" onClick={openModalHandler}   >
+                <span className="font-semibold text-[18px]">Add project</span> <FaPlus className="size-[30px] font-semibold " />
                     
                   </SidebarMenuButton>
                 </SidebarMenuItem>

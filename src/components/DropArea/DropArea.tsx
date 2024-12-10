@@ -15,7 +15,7 @@ const DropArea = (props:DropAreaProps) => {
     }}
 
     onDragOver={(e)=>e.preventDefault()}
-    className={ showDropArea? `bg-gray-100 flex opacity-50 justify-center items-center border-2 border-gray-200 border-solid p-7 transition-all ease-out duration-[5000] `: "opacity-0 transition-all ease-out duration-[5000] h-1"}>
+    className={ showDropArea? `bg-gray-100 w-full flex opacity-50 h-[120px] justify-center items-center border-2 border-gray-200 border-solid p-7 transition-all ease-out duration-[5000] `: "opacity-0 transition-all ease-out duration-[5000] h-1"}>
         Drop here
         </div>
   )
